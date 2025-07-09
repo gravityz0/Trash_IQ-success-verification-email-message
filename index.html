@@ -107,20 +107,12 @@
                     <div class="icon success">✓</div>
                     <h1>Email Verified Successfully!</h1>
                     <p>${message}</p>
-                    <a href="/dashboard" class="button success-button">Continue to Dashboard</a>
-                    <div class="additional-actions">
-                        <p>Need help? <a href="/support">Contact support</a></p>
-                    </div>
                 `;
             } else {
                 container.innerHTML = `
                     <div class="icon error">✗</div>
                     <h1>Verification Failed</h1>
                     <p>${message}</p>
-                    <a href="/support" class="button error-button">Get Help</a>
-                    <div class="additional-actions">
-                        <p>Try again? <a href="/resend-verification">Resend verification email</a></p>
-                    </div>
                 `;
             }
         });
