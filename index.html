@@ -90,15 +90,14 @@
 </head>
 <body>
     <div class="verification-container" id="verificationResult">
-        <!-- Content will be filled by JavaScript -->
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const status = urlParams.get('status');
-            const message = urlParams.get('message') || 
-                           (status === 'success' ? 'Your email has been successfully verified.' : 
+            const message = 
+                            (status === 'success' ? 'Your email has been successfully verified. Go to App to login' : 
                             'We encountered an issue verifying your email.');
             
             const container = document.getElementById('verificationResult');
