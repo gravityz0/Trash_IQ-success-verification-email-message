@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f7fa;
+        }
+        
+        .verification-container {
+            text-align: center;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 450px;
+            width: 90%;
+        }
+        
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .success {
+            color: #10b981;
+        }
+        
+        .error {
+            color: #ef4444;
+        }
+        
+        h1 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            color: #4b5563;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .success-button {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .error-button {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .additional-actions {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .additional-actions a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container" id="verificationResult">
+        <!-- Content will be filled by JavaScript -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+            const message = urlParams.get('message') || 
+                           (status === 'success' ? 'Your email has been successfully verified.' : 
+                            'We encountered an issue verifying your email.');
+            
+            const container = document.getElementById('verificationResult');
+            
+            if (status === 'success') {
+                container.innerHTML = `
+                    <div class="icon success">✓</div>
+                    <h1>Email Verified Successfully!</h1>
+                    <p>${message}</p>
+                    <a href="/dashboard" class="button success-button">Continue to Dashboard</a>
+                    <div class="additional-actions">
+                        <p>Need help? <a href="/support">Contact support</a></p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="icon error">✗</div>
+                    <h1>Verification Failed</h1>
+                    <p>${message}</p>
+                    <a href="/support" class="button error-button">Get Help</a>
+                    <div class="additional-actions">
+                        <p>Try again? <a href="/resend-verification">Resend verification email</a></p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
